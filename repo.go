@@ -2,16 +2,17 @@ package main
 
 import "fmt"
 
-var currentId int
+var currentID int
 
 var todos Todos
 
 // Give us some seed data
 func init() {
-	RepoCreateTodo(Todo{Name: "Write presentation"})
-	RepoCreateTodo(Todo{Name: "Host meetup"})
+	RepoCreateTodo(Todo{Name: "Install docker frameworks"})
+	RepoCreateTodo(Todo{Name: "Choose between rancher/kubernetes"})
 }
 
+// RepoFindTodo to be exported to handlers.go
 func RepoFindTodo(id int) Todo {
 	for _, t := range todos {
 		if t.Id == id {
@@ -22,14 +23,15 @@ func RepoFindTodo(id int) Todo {
 	return Todo{}
 }
 
-//this is bad, I don't think it passes race condtions
+//RepoCreateTodo This is bad, I don't think it passes race condtions
 func RepoCreateTodo(t Todo) Todo {
-	currentId += 1
-	t.Id = currentId
+	currentID++
+	t.Id = currentID
 	todos = append(todos, t)
 	return t
 }
 
+//RepoDestroyTodo Hope this works, havnt tried it
 func RepoDestroyTodo(id int) error {
 	for i, t := range todos {
 		if t.Id == id {
