@@ -12,7 +12,7 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Welcome!\n")
+	fmt.Fprint(w, "Welcome to V2 of this app!\n")
 }
 
 func TodoIndex(w http.ResponseWriter, r *http.Request) {
